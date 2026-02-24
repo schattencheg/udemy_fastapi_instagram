@@ -31,17 +31,17 @@ def test_health_endpoint():
 def run_with_server():
     """Start the server, run tests, then stop it."""
     print("SELFTESTING: Starting FastAPI server...")
-    
+
     # Start the server
     process = subprocess.Popen(
         [sys.executable, "-m", "uvicorn", "main:app", "--host", "127.0.0.1", "--port", "8000"],
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE
     )
-    
+
     # Wait for server to start
     time.sleep(3)
-    
+
     try:
         result = test_health_endpoint()
         return result
@@ -54,11 +54,11 @@ def run_with_server():
 if __name__ == "__main__":
     # Check if server is already running or start it for testing
     print("SELFTESTING: Running FastAPI self-test...\n")
-    
+
     # Try testing first (in case server is already running)
     if not test_health_endpoint():
         print("\nSELFTESTING: Server not running, starting it for test...\n")
         success = run_with_server()
         sys.exit(0 if success else 1)
-    
+
     sys.exit(0)
