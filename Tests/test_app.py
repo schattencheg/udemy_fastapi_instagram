@@ -15,7 +15,8 @@ def test_health_endpoint():
             print(f"  Response: {response.json()}")
             return True
         else:
-            print(f"SELFTESTING: FAIL - Unexpected status code: {response.status_code}")
+            print(
+                f"SELFTESTING: FAIL - Unexpected status code: {response.status_code}")
             return False
     except requests.exceptions.ConnectionError:
         print("SELFTESTING: FAIL - Cannot connect to server. Is it running?")
@@ -34,7 +35,8 @@ def run_with_server():
 
     # Start the server
     process = subprocess.Popen(
-        [sys.executable, "-m", "uvicorn", "main:app", "--host", "127.0.0.1", "--port", "8000"],
+        [sys.executable, "-m", "uvicorn", "main:app",
+            "--host", "127.0.0.1", "--port", "8000"],
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE
     )
